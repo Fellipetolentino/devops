@@ -1,0 +1,53 @@
+name: Bump version and Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: read
+  statuses: write
+
+jobs:
+  bump_version:
+    name: Bump Version
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+
+  lint:
+    name: Lint Codebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Super-linter
+        uses: super-linter/super-linter@v7.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_HTML: true   # Habilita linting para HTML
+          VALIDATE_ALL_CODEBASE: false # Desabilita lint para outros arquivos
+          VALIDATE_JS: false
+          VALIDATE_CSS: false
+          VALIDATE_PYTHON: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_JSON: false
+          VALIDATE_YAML: false
+          # Desabilita validações para outros tipos de arquivos

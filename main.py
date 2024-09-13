@@ -2,8 +2,9 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-
-
+@app.get("/")
+async def root():
+    return {"message": "Para testar a calculadora use as portas: /soma, /subtracao"}
 
 # Rota para a soma
 @app.get("/soma")

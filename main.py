@@ -6,3 +6,12 @@ app = FastAPI()
 async def root():
     return {"message": "Para testar a calculadora use a porta /soma, /subtracao, /multiplicacao e /divisao"}
 
+@app.get("/multiplicacao")
+def multiplicacao(a: float, b: float):
+    return {"resultado": a * b}
+
+@app.get("/divisao")
+def divisao(a: float, b: float):
+    if b == 0:
+        raise HTTPException(status_code=400, detail="Divisão por zero não é permitida.")
+    return {"resultado": a / b}

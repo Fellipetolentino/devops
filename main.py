@@ -20,3 +20,10 @@ def subtracao(a: float, b: float):
 @app.get("/multiplicacao")
 def multiplicacao(a: float, b: float):
     return {"resultado": a * b}
+
+# Rota para a divisão
+@app.get("/divisao")
+def divisao(a: float, b: float):
+    if b == 0:
+        raise HTTPException(status_code=400, detail="Divisão por zero não é permitida.")
+    return {"resultado": a / b}

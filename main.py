@@ -4,7 +4,15 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Para testar a calculadora use as portas: /soma, /subtracao"}
+    return {"message": "Para testar a calculadora use as portas: /soma, /subtracao, /multiplicacao e /divisao"}
+
+@app.get("/soma")
+def soma(a: float, b: float):
+    return {"resultado": a + b}
+
+@app.get("/subtracao")
+def subtracao(a: float, b: float):
+    return {"resultado": a - b}
 
 @app.get("/multiplicacao")
 def multiplicacao(a: float, b: float):

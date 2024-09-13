@@ -15,3 +15,8 @@ def soma(a: float, b: float):
 @app.get("/subtracao")
 def subtracao(a: float, b: float):
     return {"resultado": a - b}
+
+# Rota para a multiplicação
+@app.get("/multiplicacao")
+def multiplicacao(a: float, b: float):
+    return {"resultado": a * b}

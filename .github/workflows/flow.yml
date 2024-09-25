@@ -72,7 +72,7 @@ jobs:
           tags: user/app:latest
 
 
-discord:
+  discord:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v4

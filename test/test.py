@@ -2,7 +2,9 @@ from src.main import *
 
 
 def test_root():
-    assert root() == {"message": "Use as portas: /soma, /subtracao, /multiplicacao, /divisao ou /docs para usar interface interativa!"}
+    result = root()
+    yield result
+    assert result == {"message": "Use as portas: /soma, /subtracao, /multiplicacao, /divisao ou /docs para usar interface interativa!"}
 
 def test_soma(a: float, b: float):
     assert soma() == {"resultado": a + b}
